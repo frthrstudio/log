@@ -1,4 +1,4 @@
-baseURL = "lab.frthr.com" #"https://frthrstudio.github.io/log/"
+baseURL = "htttps://lab.frthr.com" #"https://frthrstudio.github.io/log/"
 languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "DoIt"
