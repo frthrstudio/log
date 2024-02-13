@@ -146,6 +146,9 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
           if (response.phone_number)
             frontMatter[property] = response.phone_number;
           break;
+        case "pageTitle":
+          if (response.pageTitle) frontMatter[property] = response.pageTitle;
+          break;
         case "status":
           if (response.status?.name)
             frontMatter[property] = response.status?.name;
