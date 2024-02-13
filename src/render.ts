@@ -155,6 +155,10 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
         case "rollup":
         case "files":
         case "formula":
+        case "pageType":
+          if (response.pageType)
+            frontMatter[property] = response.pageType;
+          break;
         case "created_by":
         case "created_time":
           break;
