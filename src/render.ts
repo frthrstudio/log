@@ -180,9 +180,6 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
               }
             }
             break;
-          case "pageTitle":
-            console.log("Response :" + result);
-            break;
           case "rich_text":
             frontMatter[property] = frontMatter[property] || "";
             frontMatter[property] += result.rich_text.plain_text;
