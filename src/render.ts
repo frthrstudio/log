@@ -14,7 +14,7 @@ import { NotionToMarkdown } from "@pclouddev/notion-to-markdown";
 import YAML from "yaml";
 import { sh } from "./sh";
 import { DatabaseMount, loadConfig, PageMount } from "./config";
-import { getPageTitle, getCoverLink, getFileName, getPageType } from "./helpers";
+import { getPageTitle, getCoverLink, getFileName } from "./helpers";
 import katex from "katex";
 import { MdBlock } from "@pclouddev/notion-to-markdown/build/types";
 import path from "path";
@@ -155,10 +155,6 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
         case "rollup":
         case "files":
         case "formula":
-        case "pageType":
-          if (response.pageType)
-            frontMatter[property] = response.pageType;
-          break;
         case "created_by":
         case "created_time":
           break;
@@ -255,16 +251,9 @@ export async function savePage(
 
   const { title, pageString } = await renderPage(page, notion);
   const fileName = getFileName(title, page.id);
-  if( getPageType(page.id) == "sketch"){
-    await sh(
-      `hugo new --kind sketch "${mount.target_folder}/${fileName}"`,
-      false
-    ); 
-  }else{
-    await sh(
-      `hugo new "${mount.target_folder}/${fileName}"`,
-      false
-    );    
-  }
+  await sh(
+    `hugo new "${mount.target_folder}/${fileName}"`,
+    false
+  );
   fs.writeFileSync(`content/${mount.target_folder}/${fileName}`, pageString);
 }
