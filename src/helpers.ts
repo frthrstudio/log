@@ -16,7 +16,7 @@ export function getPageTitle(page: PageObjectResponse): string {
 export function getPageType(page: PageObjectResponse): string {
   const pageType = page.properties.pageType;
   if (pageType === "sketch") {
-    return pageType;
+    return pageType.title.map((text) => text.plain_text).join("");
   }
   throw Error(
     `Can't find a pageType`
