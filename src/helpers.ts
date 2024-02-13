@@ -13,6 +13,16 @@ export function getPageTitle(page: PageObjectResponse): string {
   );
 }
 
+export function getPageType(page: PageObjectResponse): string {
+  const pageType = page.properties.pageType;
+  if (pageType === "sketch") {
+    return pageType;
+  }
+  throw Error(
+    `Can't find a pageType`
+  );
+}
+
 export async function getCoverLink(
   page_id: string,
   notion: Client
