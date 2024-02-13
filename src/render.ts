@@ -146,9 +146,6 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
           if (response.phone_number)
             frontMatter[property] = response.phone_number;
           break;
-        case "pageTitle":
-          console.log("Response :" + response);
-          break;
         case "status":
           if (response.status?.name)
             frontMatter[property] = response.status?.name;
@@ -182,6 +179,9 @@ export async function renderPage(page: PageObjectResponse, notion: Client) {
                 fm.push(result.people.name);
               }
             }
+            break;
+          case "pageTitle":
+            console.log("Response :" + result);
             break;
           case "rich_text":
             frontMatter[property] = frontMatter[property] || "";
